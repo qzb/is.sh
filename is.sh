@@ -9,11 +9,25 @@ is() {
     local value_a="$2"
     local value_b="$3"
 
+    if [ "$condition" == "not" ]; then
+        shift 1
+
+        if is "${@}"; then
+            return 1
+        else
+            return 0
+        fi
+    fi
+
     case "$condition" in
         file)
             [ -f "$value_a" ]; return $?;;
         dir|directory)
             [ -d "$value_a" ]; return $?;;
+        link|symlink)
+            [ -L "$value_a" ]; return $?;;
+        existent|existing|exist|exists)
+            [ -e "$value_a" ]; return $?;;
         number)
             _is_number "$value_a"; return $?;;
         empty)
