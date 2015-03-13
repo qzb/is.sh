@@ -1,5 +1,4 @@
 is() {
-    # helper functions
     _is_number() {
         echo "$1" | grep -E '^[0-9]+(\.[0-9]+)?$' > /dev/null
         return $?
@@ -28,10 +27,20 @@ is() {
             [ -L "$value_a" ]; return $?;;
         existent|existing|exist|exists)
             [ -e "$value_a" ]; return $?;;
-        number)
-            _is_number "$value_a"; return $?;;
+        readable)
+            [ -r "$value_a" ]; return $?;;
+        writable)
+            [ -w "$value_a" ]; return $?;;
+        executable)
+            [ -x "$value_a" ]; return $?;;
         empty)
             [ -z "$value_a" ]; return $?;;
+        number)
+            _is_number "$value_a"; return $?;;
+        older)
+            [ "$value_a" -ot "$value_b" ]; return $?;;
+        newer)
+            [ "$value_a" -nt "$value_b" ]; return $?;;
         gt)
             ! _is_number "$value_a"         && return 1;
             ! _is_number "$value_b"         && return 1;

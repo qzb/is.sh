@@ -8,6 +8,11 @@ DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )"/.. && pwd )
 # prepare dirs and files for tests
 cd `mktemp -d`
 touch file
+chmod 777 file
+touch forbidden_file
+chmod 000 forbidden_file
+touch -d "3 hours ago" old_file
+touch -d "2 hours ago" new_file
 mkdir dir
 ln -s file symlink_file
 ln -s dir symlink_dir
@@ -58,6 +63,23 @@ assert_true  "is existent ./dir"
 assert_true  "is existent ./symlink_dir"
 assert_false "is existent ./nothing"
 
+# is writable
+assert_true  "is writable ./file"
+assert_false "is writable ./forbidden_file"
+
+# is readable
+assert_true  "is readable ./file"
+assert_false "is readable ./forbidden_file"
+
+# is executable
+assert_true  "is executable ./file"
+assert_false "is executable ./forbidden_file"
+
+# is empty
+assert_true  "is empty"
+assert_true  "is empty ''"
+assert_false "is empty abc"
+
 # is number
 assert_true  "is number 123"
 assert_true  "is number 123.456"
@@ -66,47 +88,50 @@ assert_false "is number 123ff"
 assert_false "is number 123,456"
 assert_false "is number 12e3"
 
-# is empty
-assert_true  "is empty"
-assert_true  "is empty ''"
-assert_false "is empty abc"
+# is older
+assert_true  "is older ./old_file ./new_file"
+assert_false "is older ./new_file ./old_file"
+
+# is newer
+assert_false "is newer ./old_file ./new_file"
+assert_true  "is newer ./new_file ./old_file"
 
 # is gt
-assert_false "is gt 111 222"
-assert_false "is gt 222 222"
-assert_true  "is gt 333 222"
+assert_false "is gt 111 222.0"
+assert_false "is gt 222 222.0"
+assert_true  "is gt 333 222.0"
 assert_false "is gt abc 222"
 assert_false "is gt 222 abc"
 assert_false "is gt abc abc"
 
 # is lt
-assert_true  "is lt 111 222"
-assert_false "is lt 222 222"
-assert_false "is lt 333 222"
+assert_true  "is lt 111 222.0"
+assert_false "is lt 222 222.0"
+assert_false "is lt 333 222.0"
 assert_false "is lt abc 222"
 assert_false "is lt 222 abc"
 assert_false "is lt abc abc"
 
 # is ge
-assert_false "is ge 111 222"
-assert_true  "is ge 222 222"
-assert_true  "is ge 333 222"
+assert_false "is ge 111 222.0"
+assert_true  "is ge 222 222.0"
+assert_true  "is ge 333 222.0"
 assert_false "is ge abc 222"
 assert_false "is ge 222 abc"
 assert_false "is ge abc abc"
 
 # is le
-assert_true  "is le 111 222"
-assert_true  "is le 222 222"
-assert_false "is le 333 222"
+assert_true  "is le 111 222.0"
+assert_true  "is le 222 222.0"
+assert_false "is le 333 222.0"
 assert_false "is le abc 222"
 assert_false "is le 222 abc"
 assert_false "is le abc abc"
 
 # is equal
-assert_false "is equal 111 222"
+assert_false "is equal 111 222.0"
 assert_true  "is equal 222 222.0"
-assert_false "is equal 333 222"
+assert_false "is equal 333 222.0"
 assert_false "is equal abc 222"
 assert_false "is equal 222 abc"
 assert_true  "is equal abc abc"
