@@ -10,12 +10,14 @@ is() {
 
     if [ "$condition" == "not" ]; then
         shift 1
+        ! is "${@}"
+        return $?
+    fi
 
-        if is "${@}"; then
-            return 1
-        else
-            return 0
-        fi
+    if [ "$condition" == "a" -o "$condition" == "the" ]; then
+        shift 1
+        is "${@}"
+        return $?
     fi
 
     case "$condition" in
