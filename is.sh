@@ -65,7 +65,7 @@ is() {
             ! _is_number "$value_b"         && return 1;
             echo "$value_a == $value_b" | bc | grep 1; return $?;;
         match|matching)
-            echo "$value_a" | grep -E "$value_b"; return $?;;
+            echo "$value_a" | grep -xE "$value_b"; return $?;;
         substring)
             echo "$value_b" | grep -F "$value_a"; return $?;;
     esac > /dev/null

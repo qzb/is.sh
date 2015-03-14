@@ -137,9 +137,9 @@ assert_false "is equal 222 abc"
 assert_true  "is equal abc abc"
 
 # is matching
-assert_true  "is matching 'abc' '^[a-c]+$'"
-assert_false "is matching 'Abc' '^[a-c]+$'"
-assert_false "is matching 'abd' '^[a-c]+$'"
+assert_true  "is matching 'abc' '[a-c]+'"
+assert_false "is matching 'Abc' '[a-c]+'"
+assert_false "is matching 'abd' '[a-c]+'"
 
 # is substring
 assert_true  "is substring cde abcdef"
