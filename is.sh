@@ -1,3 +1,5 @@
+#!/bin/bash
+
 is() {
     _is_number() {
         echo "$1" | grep -E '^[0-9]+(\.[0-9]+)?$' > /dev/null
@@ -46,30 +48,36 @@ is() {
         gt)
             ! _is_number "$value_a"         && return 1;
             ! _is_number "$value_b"         && return 1;
-            echo "$value_a > $value_b" | bc | grep 1; return $?;;
+            awk "BEGIN {exit $value_a > $value_b ? 0 : 1}"; return $?;;
         lt)
             ! _is_number "$value_a"         && return 1;
             ! _is_number "$value_b"         && return 1;
-            echo "$value_a < $value_b" | bc | grep 1; return $?;;
+            awk "BEGIN {exit $value_a < $value_b ? 0 : 1}"; return $?;;
         ge)
             ! _is_number "$value_a"         && return 1;
             ! _is_number "$value_b"         && return 1;
-            echo "$value_a >= $value_b" | bc | grep 1; return $?;;
+            awk "BEGIN {exit $value_a >= $value_b ? 0 : 1}"; return $?;;
         le)
             ! _is_number "$value_a"         && return 1;
             ! _is_number "$value_b"         && return 1;
-            echo "$value_a <= $value_b" | bc | grep 1; return $?;;
+            awk "BEGIN {exit $value_a <= $value_b ? 0 : 1}"; return $?;;
         equal)
             [ "$value_a" = "$value_b" ]     && return 0;
             ! _is_number "$value_a"         && return 1;
             ! _is_number "$value_b"         && return 1;
-            echo "$value_a == $value_b" | bc | grep 1; return $?;;
+            awk "BEGIN {exit $value_a == $value_b ? 0 : 1}"; return $?;;
         match|matching)
             echo "$value_a" | grep -xE "$value_b"; return $?;;
         substring)
             echo "$value_b" | grep -F "$value_a"; return $?;;
     esac > /dev/null
 
-    echo "is: Cannot recognize condition \"$condition\""
     return 1
 }
+
+if is not equal ${BASH_SOURCE[0]} $0; then
+    export -f is
+else
+    is "${@}"
+    exit $?
+fi
