@@ -1,0 +1,8 @@
+{
+  "name": "is",
+  "version": "1.0.0",
+  "description": "Fancy alternative for old good test command",
+  "install": "install -b is.sh ${PREFIX:-/usr/local}/bin/is",
+  "scripts": [ "is.sh" ]
+}
+
