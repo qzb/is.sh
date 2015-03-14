@@ -1,4 +1,6 @@
 # is.sh
+[![Build Status](https://travis-ci.org/qzb/is.sh.svg)](https://travis-ci.org/qzb/is.sh)
+
 Fancy alternative for old good test command.
 
 ```sh
