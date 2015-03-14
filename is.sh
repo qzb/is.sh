@@ -29,7 +29,7 @@ is() {
             [ -e "$value_a" ]; return $?;;
         readable)
             [ -r "$value_a" ]; return $?;;
-        writable)
+        writeable)
             [ -w "$value_a" ]; return $?;;
         executable)
             [ -x "$value_a" ]; return $?;;

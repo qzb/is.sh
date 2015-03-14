@@ -64,8 +64,8 @@ assert_true  "is existent ./symlink_dir"
 assert_false "is existent ./nothing"
 
 # is writable
-assert_true  "is writable ./file"
-assert_false "is writable ./forbidden_file"
+assert_true  "is writeable ./file"
+assert_false "is writeable ./forbidden_file"
 
 # is readable
 assert_true  "is readable ./file"
