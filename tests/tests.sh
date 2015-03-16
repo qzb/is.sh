@@ -145,6 +145,20 @@ assert_false "is matching 'abd' '[a-c]+'"
 assert_true  "is substring cde abcdef"
 assert_false "is substring cdf abcdef"
 
+# is true
+assert_false "is true abc"
+assert_true  "is true true"
+assert_true  "is true 0"
+assert_false "is true 1"
+assert_false "is true -12"
+
+# is true
+assert_true  "is false abc"
+assert_false "is false true"
+assert_false "is false 0"
+assert_true  "is false 1"
+assert_true  "is false -12"
+
 # negation
 assert_true  "is not number abc"
 assert_false "is not number 123"
@@ -152,7 +166,6 @@ assert_true  "is not equal abc def"
 assert_false "is not equal abc abc"
 
 # articles
-
 assert_true  "is a number 123"
 assert_true  "is the number 123"
 assert_true  "is not a number abc"

@@ -1,4 +1,11 @@
 #!/bin/bash
+#
+# Copyright (c) 2015 Józef Sokołowski
+# Distributed under the MIT License
+#
+# For most current version checkout repository:
+# https://github.com/qzb/is.sh
+#
 
 is() {
     _is_number() {
@@ -70,6 +77,10 @@ is() {
             echo "$value_a" | grep -xE "$value_b"; return $?;;
         substring)
             echo "$value_b" | grep -F "$value_a"; return $?;;
+        true)
+            [ "$value_a" == true -o "$value_a" == 0 ]; return $?;;
+        false)
+            [ "$value_a" != true -a "$value_a" != 0 ]; return $?;;
     esac > /dev/null
 
     return 1

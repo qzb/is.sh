@@ -35,6 +35,8 @@ fi
 * ``is executable $path`` - checks if file is executable
 * ``is older $pathA $pathB`` - checks if first file is older than second one
 * ``is newer $pathA $pathB`` - checks if first file is newer than second one
+* ``is true $value`` - true if value is equal "true" or "0"
+* ``is false $value`` - oposite of ``is true $value``
 
 ## Negations
 
