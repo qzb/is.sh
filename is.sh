@@ -74,7 +74,7 @@ is() {
             ! _is_number "$value_b"         && return 1;
             awk "BEGIN {exit $value_a == $value_b ? 0 : 1}"; return $?;;
         match|matching)
-            echo "$value_a" | grep -xE "$value_b"; return $?;;
+            echo "$value_b" | grep -xE "$value_a"; return $?;;
         substring)
             echo "$value_b" | grep -F "$value_a"; return $?;;
         true)

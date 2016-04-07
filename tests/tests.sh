@@ -138,9 +138,9 @@ assert_false "is equal 222 abc"
 assert_true  "is equal abc abc"
 
 # is matching
-assert_true  "is matching 'abc' '[a-c]+'"
-assert_false "is matching 'Abc' '[a-c]+'"
-assert_false "is matching 'abd' '[a-c]+'"
+assert_true  "is matching '[a-c]+' 'abc'"
+assert_false "is matching '[a-c]+' 'Abc'"
+assert_false "is matching '[a-c]+' 'abd"
 
 # is substring
 assert_true  "is substring cde abcdef"
@@ -178,7 +178,7 @@ assert_true  "is symlink ./symlink_file"
 assert_true  "is existing ./file"
 assert_true  "is exist ./file"
 assert_true  "is exists ./file"
-assert_true  "is match 'abc' '^[a-c]+$'"
+assert_true  "is match '^[a-c]+$' 'abc'"
 
 # unknown condition
 assert_false "is spam foo bar"
