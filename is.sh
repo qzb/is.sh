@@ -1,11 +1,13 @@
 #!/bin/bash
 #
-# Copyright (c) 2015 Józef Sokołowski
+# Copyright (c) 2016 Józef Sokołowski
 # Distributed under the MIT License
 #
 # For most current version checkout repository:
 # https://github.com/qzb/is.sh
 #
+
+VERSION='1.0.0'
 
 is() {
     _is_number() {
@@ -16,6 +18,11 @@ is() {
     local condition="$1"
     local value_a="$2"
     local value_b="$3"
+
+    if [ "$condition" == "--version" ]; then
+        echo "is.sh $VERSION"
+        exit
+    fi
 
     if [ "$condition" == "not" ]; then
         shift 1

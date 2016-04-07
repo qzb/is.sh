@@ -182,6 +182,9 @@ assert_true  "is eq 222 222.0"
 assert_true  "is match '^[a-c]+$' 'abc'"
 assert_true  "is substr cde abcdef"
 
+# --version
+assert_true "is --version"
+
 # unknown condition
 assert_false "is spam foo bar"
 
