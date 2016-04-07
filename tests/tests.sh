@@ -178,7 +178,9 @@ assert_true  "is symlink ./symlink_file"
 assert_true  "is existing ./file"
 assert_true  "is exist ./file"
 assert_true  "is exists ./file"
+assert_true  "is eq 222 222.0"
 assert_true  "is match '^[a-c]+$' 'abc'"
+assert_true  "is substr cde abcdef"
 
 # unknown condition
 assert_false "is spam foo bar"

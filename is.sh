@@ -68,14 +68,14 @@ is() {
             ! _is_number "$value_a"         && return 1;
             ! _is_number "$value_b"         && return 1;
             awk "BEGIN {exit $value_a <= $value_b ? 0 : 1}"; return $?;;
-        equal)
+        eq|equal)
             [ "$value_a" = "$value_b" ]     && return 0;
             ! _is_number "$value_a"         && return 1;
             ! _is_number "$value_b"         && return 1;
             awk "BEGIN {exit $value_a == $value_b ? 0 : 1}"; return $?;;
         match|matching)
             echo "$value_b" | grep -xE "$value_a"; return $?;;
-        substring)
+        substr|substring)
             echo "$value_b" | grep -F "$value_a"; return $?;;
         true)
             [ "$value_a" == true -o "$value_a" == 0 ]; return $?;;
