@@ -9,6 +9,35 @@
 
 VERSION='1.0.0'
 
+print_help() {
+cat << EOF
+Conditions:
+  is equal VALUE_A VALUE_B
+  is matching REGEXP VALUE
+  is substring VALUE_A VALUE_B
+  is empty VALUE
+  is number VALUE
+  is gt NUMBER_A NUMBER_B
+  is lt NUMBER_A NUMBER_B
+  is ge NUMBER_A NUMBER_B
+  is le NUMBER_A NUMBER_B
+  is file PATH
+  is dir PATH
+  is link PATH
+  is existing PATH
+  is readable PATH
+  is writeable PATH
+  is executable PATH
+  is older PATH_A PATH_B
+  is newer PATH_A PATH_B
+  is true VALUE
+  is false VALUE
+
+Negation:
+  is not equal VALUE_A VALUE_B
+EOF
+}
+
 is() {
     _is_number() {
         echo "$1" | grep -E '^[0-9]+(\.[0-9]+)?$' > /dev/null
@@ -21,6 +50,11 @@ is() {
 
     if [ "$condition" == "--version" ]; then
         echo "is.sh $VERSION"
+        exit
+    fi
+
+    if [ "$condition" == "--help" ]; then
+        print_help
         exit
     fi
 

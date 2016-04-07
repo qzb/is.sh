@@ -185,6 +185,9 @@ assert_true  "is substr cde abcdef"
 # --version
 assert_true "is --version"
 
+# help
+assert_true "is --help"
+
 # unknown condition
 assert_false "is spam foo bar"
 
