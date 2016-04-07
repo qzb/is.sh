@@ -1,9 +1,11 @@
 # is.sh
-[![Build Status](https://travis-ci.org/qzb/is.sh.svg)](https://travis-ci.org/qzb/is.sh)
 
 Fancy alternative for old good test command.
 
-```sh
+[![NPM Version][npm-image]][npm-url]
+[![Build][travis-image]][travis-url]
+
+```bash
 var=123
 
 if is equal $var 123.0; then
@@ -13,6 +15,12 @@ fi
 if is not a substring $var "foobar"; then
     echo "and it's easy to read"
 fi
+```
+
+## Installation
+
+```bash
+$ npm install -g is.sh
 ```
 
 ## Conditions
@@ -47,3 +55,9 @@ $ is a number "abc" && echo "number"
 $ is not a number "abc" && echo "not a number"
 not a number
 ```
+
+
+[npm-image]: https://img.shields.io/npm/v/is.sh.svg
+[npm-url]: https://npmjs.org/package/is.sh
+[travis-image]: https://img.shields.io/travis/qzb/is.sh/master.svg
+[travis-url]: https://travis-ci.org/qzb/is.sh

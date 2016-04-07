@@ -1,8 +1,32 @@
 {
-  "name": "is",
+  "name": "is.sh",
   "version": "1.0.0",
-  "description": "Fancy alternative for old good test command",
-  "install": "install -b is.sh ${PREFIX:-/usr/local}/bin/is",
-  "scripts": [ "is.sh" ]
+  "description": "Human readable conditions for bash",
+  "keywords": [
+      "shell",
+      "bash",
+      "sh",
+      "test",
+      "conditions"
+  ],
+  "bin": {
+      "is": "./is.sh",
+      "is.sh": "./is.sh"
+  },
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "./tests/tests.sh"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/qzb/is.sh.git"
+  },
+  "author": "Józef Sokołowski <github@qzb.me>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/qzb/is.sh/issues"
+  },
+  "homepage": "https://github.com/qzb/is.sh#readme"
 }
-
