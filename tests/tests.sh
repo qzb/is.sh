@@ -11,8 +11,9 @@ touch file
 chmod 777 file
 touch forbidden_file
 chmod 000 forbidden_file
-touch -d "3 hours ago" old_file
-touch -d "2 hours ago" new_file
+touch old_file
+sleep 2
+touch new_file
 mkdir dir
 ln -s file symlink_file
 ln -s dir symlink_dir
