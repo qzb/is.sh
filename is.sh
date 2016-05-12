@@ -64,7 +64,7 @@ is() {
         return $?
     fi
 
-    if [ "$condition" == "a" -o "$condition" == "the" ]; then
+    if [ "$condition" == "a" ] || [ "$condition" == "the" ]; then
         shift 1
         is "${@}"
         return $?
@@ -119,15 +119,15 @@ is() {
         substr|substring)
             echo "$value_b" | grep -F "$value_a"; return $?;;
         true)
-            [ "$value_a" == true -o "$value_a" == 0 ]; return $?;;
+            [ "$value_a" == true ] || [ "$value_a" == 0 ]; return $?;;
         false)
-            [ "$value_a" != true -a "$value_a" != 0 ]; return $?;;
+            [ "$value_a" != true ] && [ "$value_a" != 0 ]; return $?;;
     esac > /dev/null
 
     return 1
 }
 
-if is not equal ${BASH_SOURCE[0]} $0; then
+if is not equal "${BASH_SOURCE[0]}" "$0"; then
     export -f is
 else
     is "${@}"
