@@ -1,5 +1,9 @@
 #!/bin/bash
 
+realpath() {
+  python -c "import os; print(os.path.realpath('$1'))"
+}
+
 if [ -n "$1" ] && ! which "$1" > /dev/null; then
     echo "$1 not found"
     exit 1
