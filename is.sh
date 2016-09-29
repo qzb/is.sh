@@ -7,10 +7,9 @@
 # https://github.com/qzb/is.sh
 #
 
-VERSION='1.0.0'
-
-print_help() {
-cat << EOF
+is() {
+    if [ "$1" == "--help" ]; then
+        cat << EOF
 Conditions:
   is equal VALUE_A VALUE_B
   is matching REGEXP VALUE
@@ -36,27 +35,17 @@ Conditions:
 Negation:
   is not equal VALUE_A VALUE_B
 EOF
-}
+        exit
+    fi
 
-is() {
-    _is_number() {
-        echo "$1" | grep -E '^[0-9]+(\.[0-9]+)?$' > /dev/null
-        return $?
-    }
+    if [ "$1" == "--version" ]; then
+        echo "is.sh 1.0.1"
+        exit
+    fi
 
     local condition="$1"
     local value_a="$2"
     local value_b="$3"
-
-    if [ "$condition" == "--version" ]; then
-        echo "is.sh $VERSION"
-        exit
-    fi
-
-    if [ "$condition" == "--help" ]; then
-        print_help
-        exit
-    fi
 
     if [ "$condition" == "not" ]; then
         shift 1
@@ -88,31 +77,31 @@ is() {
         empty)
             [ -z "$value_a" ]; return $?;;
         number)
-            _is_number "$value_a"; return $?;;
+            echo "$value_a" | grep -E '^[0-9]+(\.[0-9]+)?$'; return $?;;
         older)
             [ "$value_a" -ot "$value_b" ]; return $?;;
         newer)
             [ "$value_a" -nt "$value_b" ]; return $?;;
         gt)
-            ! _is_number "$value_a"         && return 1;
-            ! _is_number "$value_b"         && return 1;
+            is not a number "$value_a"      && return 1;
+            is not a number "$value_b"      && return 1;
             awk "BEGIN {exit $value_a > $value_b ? 0 : 1}"; return $?;;
         lt)
-            ! _is_number "$value_a"         && return 1;
-            ! _is_number "$value_b"         && return 1;
+            is not a number "$value_a"      && return 1;
+            is not a number "$value_b"      && return 1;
             awk "BEGIN {exit $value_a < $value_b ? 0 : 1}"; return $?;;
         ge)
-            ! _is_number "$value_a"         && return 1;
-            ! _is_number "$value_b"         && return 1;
+            is not a number "$value_a"      && return 1;
+            is not a number "$value_b"      && return 1;
             awk "BEGIN {exit $value_a >= $value_b ? 0 : 1}"; return $?;;
         le)
-            ! _is_number "$value_a"         && return 1;
-            ! _is_number "$value_b"         && return 1;
+            is not a number "$value_a"      && return 1;
+            is not a number "$value_b"      && return 1;
             awk "BEGIN {exit $value_a <= $value_b ? 0 : 1}"; return $?;;
         eq|equal)
             [ "$value_a" = "$value_b" ]     && return 0;
-            ! _is_number "$value_a"         && return 1;
-            ! _is_number "$value_b"         && return 1;
+            is not a number "$value_a"      && return 1;
+            is not a number "$value_b"      && return 1;
             awk "BEGIN {exit $value_a == $value_b ? 0 : 1}"; return $?;;
         match|matching)
             echo "$value_b" | grep -xE "$value_a"; return $?;;
