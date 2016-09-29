@@ -95,6 +95,10 @@ assert_false "$is readable ./forbidden_file"
 assert_true  "$is executable ./file"
 assert_false "$is executable ./forbidden_file"
 
+# is installed
+assert_true  "$is installed which"
+assert_false "$is installed witch"
+
 # is empty
 assert_true  "$is empty"
 assert_true  "$is empty ''"

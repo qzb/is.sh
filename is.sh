@@ -27,6 +27,7 @@ Conditions:
   is readable PATH
   is writeable PATH
   is executable PATH
+  is installed COMMAND
   is older PATH_A PATH_B
   is newer PATH_A PATH_B
   is true VALUE
@@ -74,6 +75,8 @@ EOF
             [ -w "$value_a" ]; return $?;;
         executable)
             [ -x "$value_a" ]; return $?;;
+        installed)
+            which "$value_a"; return $?;;
         empty)
             [ -z "$value_a" ]; return $?;;
         number)
