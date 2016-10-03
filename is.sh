@@ -40,7 +40,7 @@ EOF
     fi
 
     if [ "$1" == "--version" ]; then
-        echo "is.sh 1.0.1"
+        echo "is.sh 1.1.0"
         exit
     fi
 
