@@ -191,8 +191,10 @@ assert_false "$is not equal abc abc"
 
 # articles
 assert_true  "$is a number 123"
+assert_true  "$is an number 123"
 assert_true  "$is the number 123"
 assert_true  "$is not a number abc"
+assert_true  "$is not an number abc"
 assert_true  "$is not the number abc"
 
 # test aliases

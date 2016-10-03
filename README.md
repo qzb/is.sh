@@ -76,7 +76,7 @@ not a number
 
 ### Articles
 
-You can add *a* and *the* articles before condition name.
+You can add *a*, *an*, and *the* articles before condition name.
 
 ```sh
 $ is a number 5
