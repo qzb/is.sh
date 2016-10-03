@@ -5,7 +5,9 @@ Fancy alternative for old good test command.
 [![NPM Version][npm-image]][npm-url]
 [![Build][travis-image]][travis-url]
 
-```bash
+## Example
+
+```sh
 var=123
 
 if is equal $var 123.0; then
@@ -19,11 +21,26 @@ fi
 
 ## Installation
 
-```bash
+In order to use is.sh you can install it with one of following 1-liners:
+
+```sh
+# Unix-like
+$ sudo sh -c 'cd /usr/local/bin && wget raw.githubusercontent.com/qzb/is.sh/latest/is.sh -O is && chmod +x is'
+
+# NPM
 $ npm install -g is.sh
 ```
 
-## Conditions
+If you don't want to install is.sh system-wide you can just download it and source it from your script:
+
+```sh
+$ wget raw.githubusercontent.com/qzb/is.sh/latest/is.sh
+$ source ./is.sh
+```
+
+## Usage
+
+### Conditions
 
 * ``is equal $valueA $valueB`` - checks if values are the same or if they are equal numbers
 * ``is matching $regexp $value`` - checks if whole value matches to regular expression
@@ -41,20 +58,34 @@ $ npm install -g is.sh
 * ``is readable $path`` - checks if file is readable
 * ``is writeable $path`` - checks if file is writeable
 * ``is executable $path`` - checks if file is executable
+* ``is installed $command`` - checks if given command is available
 * ``is older $pathA $pathB`` - checks if first file is older than second one
 * ``is newer $pathA $pathB`` - checks if first file is newer than second one
 * ``is true $value`` - true if value is equal "true" or "0"
 * ``is false $value`` - oposite of ``is true $value``
 
-## Negations
+### Negations
 
-You can negate any condition by putting not in front of it.
+You can negate any condition by putting *not* in front of it.
 
 ```sh
-$ is a number "abc" && echo "number"
-$ is not a number "abc" && echo "not a number"
+$ is number "abc" && echo "number"
+$ is not number "abc" && echo "not a number"
 not a number
 ```
+
+### Articles
+
+You can add *a* and *the* articles before condition name.
+
+```sh
+$ is a number 5
+$ is not a substring abc defghi
+```
+
+## License
+
+MIT
 
 
 [npm-image]: https://img.shields.io/npm/v/is.sh.svg
