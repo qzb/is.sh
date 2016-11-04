@@ -95,9 +95,9 @@ assert_false "$is readable ./forbidden_file"
 assert_true  "$is executable ./file"
 assert_false "$is executable ./forbidden_file"
 
-# is installed
-assert_true  "$is installed which"
-assert_false "$is installed witch"
+# is available
+assert_true  "$is available which"
+assert_false "$is available witch"
 
 # is empty
 assert_true  "$is empty"
@@ -206,6 +206,7 @@ assert_true  "$is exists ./file"
 assert_true  "$is eq 222 222.0"
 assert_true  "$is match '^[a-c]+$' 'abc'"
 assert_true  "$is substr cde abcdef"
+assert_true  "$is installed which"
 
 # --version
 assert_true "$is --version"

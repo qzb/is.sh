@@ -58,7 +58,7 @@ $ source ./is.sh
 * ``is readable $path`` - checks if file is readable
 * ``is writeable $path`` - checks if file is writeable
 * ``is executable $path`` - checks if file is executable
-* ``is installed $command`` - checks if given command is available
+* ``is available $command`` - checks if given command is available
 * ``is older $pathA $pathB`` - checks if first file is older than second one
 * ``is newer $pathA $pathB`` - checks if first file is newer than second one
 * ``is true $value`` - true if value is equal "true" or "0"
