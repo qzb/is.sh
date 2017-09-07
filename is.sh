@@ -35,6 +35,11 @@ Conditions:
 
 Negation:
   is not equal VALUE_A VALUE_B
+
+Optional article:
+  is not a number VALUE
+  is an existing PATH
+  is the file PATH
 EOF
         exit
     fi
