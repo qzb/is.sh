@@ -1,16 +1,12 @@
 #!/bin/bash
 
-realpath() {
-  python -c "import os; print(os.path.realpath('$1'))"
-}
-
 if [ -n "$1" ] && ! which "$1" > /dev/null; then
     echo "$1 not found"
     exit 1
 fi
 
-DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )"/.. && pwd )
-CMD=$(realpath "$(which "${1:-$DIR/is.sh}")")
+DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )"/.. && pwd -P )
+CMD=$(which "${1:-$DIR/is.sh}")
 
 # shellcheck source=/dev/null
 . "$DIR/tests/assert.sh"
