@@ -176,7 +176,7 @@ assert_true  "$is true 0"
 assert_false "$is true 1"
 assert_false "$is true -12"
 
-# is true
+# is false
 assert_true  "$is false abc"
 assert_false "$is false true"
 assert_false "$is false 0"
