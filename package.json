@@ -1,17 +1,17 @@
 {
   "name": "is.sh",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "Human readable conditions for bash",
   "keywords": [
-      "shell",
-      "bash",
-      "sh",
-      "test",
-      "conditions"
+    "shell",
+    "bash",
+    "sh",
+    "test",
+    "conditions"
   ],
   "bin": {
-      "is": "./is.sh",
-      "is.sh": "./is.sh"
+    "is": "./is.sh",
+    "is.sh": "./is.sh"
   },
   "directories": {
     "test": "tests"
